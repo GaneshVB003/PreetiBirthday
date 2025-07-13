@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sis's Birthday</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; }
+
+    video {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px 40px;
+      font-size: 24px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    #rotate-lock {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      padding: 30px;
+      line-height: 1.5;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #rotate-lock img {
+      width: 100px;
+      margin-top: 20px;
+      animation: rotateIcon 2s infinite;
+    }
+
+    @keyframes rotateIcon {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(90deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <video id="birthdayVid" loop>
+    <source src="https://res.cloudinary.com/dogxcu1sj/video/upload/v1752384408/WhatsApp_Video_2025-07-13_at_12.09.39_AM_jtoi6y.mp4" type="video/mp4">
+  </video>
+
+  <button class="overlay-btn" onclick="playWithSound()">Click Me</button>
+
+  <div id="rotate-lock">
+    <div>🔄 Please rotate your device to <b>landscape</b> to view this site.</div>
+    <img src="https://cdn-icons-png.flaticon.com/512/545/545705.png" alt="Rotate icon" />
+  </div>
+
+  <script>
+    function playWithSound() {
+      const vid = document.getElementById("birthdayVid");
+      vid.muted = false;
+      vid.play();
+    }
+
+    function checkOrientation() {
+      const rotateLock = document.getElementById("rotate-lock");
+      if (window.innerHeight > window.innerWidth) {
+        rotateLock.style.display = "flex";
+      } else {
+        rotateLock.style.display = "none";
+      }
+    }
+
+    window.addEventListener("resize", checkOrientation);
+    window.addEventListener("load", checkOrientation);
+  </script>
+
+</body>
+</html>
